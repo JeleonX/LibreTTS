@@ -16,7 +16,6 @@ export default async function handler(req, res) {
 
   try {
     if (!API_KEY) {
-      console.error("安全警报：环境变量 API_KEY 未设置！API 当前处于不安全状态。");
       return res.status(500).json({ error: "服务器内部配置错误" });
     }
     const clientApiKey = req.method === 'POST' ? req.body.api_key : req.query.api_key;
