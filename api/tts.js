@@ -1,7 +1,6 @@
 let expiredAt = null;
 let endpoint = null;
 let clientId = "76a75279-2ffa-4c3d-8db8-7b47252aa41c";
-const API_KEY = process.env.API_KEY
 
 export default async function handler(req, res) {
   // Set CORS headers
@@ -15,14 +14,6 @@ export default async function handler(req, res) {
   }
 
   try {
-    if (!API_KEY) {
-      return res.status(500).json({ error: "服务器内部配置错误" });
-    }
-    const clientApiKey = req.method === 'POST' ? req.body.api_key : req.query.api_key;
-    if (clientApiKey !== API_KEY) {
-      return res.status(401).json({ error: '无效或缺失的 API Key' });
-    }
-    
     if (req.method === "POST") {
       const body = req.body;
       const text = body.text || "";
